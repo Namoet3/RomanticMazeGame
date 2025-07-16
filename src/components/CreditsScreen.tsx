@@ -43,27 +43,32 @@ const CreditsScreen: React.FC<CreditsScreenProps> = ({ playerState, onRestart, t
   const formattedTime = formatElapsedTime(totalElapsedTime);
 
   return (
-    <div className="text-center p-4 sm:p-6 bg-purple-800 bg-opacity-80 rounded-lg shadow-xl max-w-lg mx-auto screen-fade-in">
-      <h2 className="text-2xl sm:text-3xl font-bold text-pink-400 mb-4">Rüyayı Aştın, Aşkım!</h2>
-      {collectedAllFragments && <h3 className="text-xl text-yellow-300 mb-3 font-handwritten">Gizli Sözümüz Ortaya Çıktı:</h3>}
-      <div className="text-left text-xs sm:text-sm space-y-3 mb-6 leading-relaxed px-1 sm:px-2 max-h-[40vh] overflow-y-auto">
-        <div className="space-y-1 mb-3">{loveLetterDisplay}</div>
-        <hr className="my-3 border-purple-600" />
-        <p className="font-handwritten text-lg sm:text-xl text-pink-200">Biricik Premsesim,</p>
-        <p className="text-indigo-200">Büyülü labirentimde dans ettin, aşkımız senin her yolunu aydınlattı. Başarıyla bu mini labirentimden geçtin. Başından beri reflekslerine güveniyordum.</p>
-        <p className="text-indigo-200">Bu küçük oyun, şirin hayaletleriyle ve yumuşak parıltılarıyla, paylaştığımız sihirli, büyük romantizmin minik bir yansıması. Sana olan aşkım, labirentte yolunu aydınlatan aura gibi hiç sönmeyen ve git gide artan sonsuz bir güce sahip. </p>
-        <p className="text-indigo-200">Senin gelmeni dört gözle beklerken senin için yaptığım bu tatlı, içten macerayı paylaştığın için teşekkür ederim.</p>
-        <p className="text-indigo-200 mt-2">Bu rüya macerasını <strong className="text-pink-300">{formattedTime}</strong> içinde tamamladın!</p>
-        <p className="font-handwritten text-lg sm:text-xl text-pink-200">Tüm aşkımla, her rüyada ve uyanık anda, sonsuza dek ve daima,</p>
-        <p className="font-handwritten text-lg sm:text-xl text-pink-200">Pek sevgili Pupsiğin</p>
+        <div className="text-center p-4 sm:p-6 bg-purple-800 bg-opacity-80 rounded-lg shadow-xl max-w-lg mx-auto screen-fade-in">
+        <h2 className="text-2xl sm:text-3xl font-bold text-pink-400 mb-4">[Victory Title Placeholder]</h2>
+        {collectedAllFragments && (
+          <h3 className="text-xl text-yellow-300 mb-3 font-handwritten">[Secret Message Header Placeholder]</h3>
+        )}
+        <div className="text-left text-xs sm:text-sm space-y-3 mb-6 leading-relaxed px-1 sm:px-2 max-h-[40vh] overflow-y-auto">
+          <div className="space-y-1 mb-3">{loveLetterDisplay}</div>
+          <hr className="my-3 border-purple-600" />
+          <p className="font-handwritten text-lg sm:text-xl text-pink-200">[Greeting Placeholder]</p>
+          <p className="text-indigo-200">[Paragraph 1 Placeholder]</p>
+          <p className="text-indigo-200">[Paragraph 2 Placeholder]</p>
+          <p className="text-indigo-200">[Paragraph 3 Placeholder]</p>
+          <p className="text-indigo-200 mt-2">
+            [Completion Time Placeholder: <strong className="text-pink-300">{formattedTime}</strong>]
+          </p>
+          <p className="font-handwritten text-lg sm:text-xl text-pink-200">[Closing Line Placeholder]</p>
+          <p className="font-handwritten text-lg sm:text-xl text-pink-200">[Signature Placeholder]</p>
+        </div>
+        <button
+          onClick={onRestart}
+          className="px-4 py-2 sm:px-5 sm:py-2.5 bg-green-500 hover:bg-green-600 text-white font-bold rounded-md text-base sm:text-lg transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50"
+        >
+          [Restart Button Text Placeholder]
+        </button>
       </div>
-      <button
-        onClick={onRestart}
-        className="px-4 py-2 sm:px-5 sm:py-2.5 bg-green-500 hover:bg-green-600 text-white font-bold rounded-md text-base sm:text-lg transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50"
-      >
-        Rüyamızı Yeniden Yaşa? (Enter)
-      </button>
-    </div>
+
   );
 };
 
