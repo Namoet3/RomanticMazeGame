@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rüya Gibi Aşk Labirenti</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #2c213d; 
+      color: #f0e6ff; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', sans-serif;
+      overflow: hidden;
+      font-size: 14px; /* Reduced base font size */
+    }
+    ::-webkit-scrollbar {
+      width: 6px; /* Smaller scrollbar */
+    }
+    ::-webkit-scrollbar-track {
+      background: #4a3760; 
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #7e57c2; 
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #9575cd; 
+    }
+    kbd {
+        display: inline-block;
+        padding: 0.15em 0.3em; /* Reduced padding */
+        font-size: 0.75em; /* Reduced font size */
+        line-height: 1;
+        background-color: #5e35b1; 
+        border: 1px solid #4527a0; 
+        border-radius: 3px; /* Smaller radius */
+        box-shadow: 0 1px 0 rgba(0,0,0,0.2), inset 0 0 0 1px #fff3;
+        color: #ede7f6; 
+        font-family: monospace;
+    }
+
+    .font-handwritten {
+      font-family: 'Caveat', cursive;
+    }
+
+    @keyframes fade-in-down { 0% { opacity: 0; transform: translateY(-15px); } 100% { opacity: 1; transform: translateY(0); } }
+    @keyframes fade-in-up { 0% { opacity: 0; transform: translateY(15px); } 100% { opacity: 1; transform: translateY(0); } }
+    .animate-fade-in-down { animation: fade-in-down 0.5s ease-out forwards; }
+    .animate-fade-in-up { animation: fade-in-up 0.5s ease-out 0.2s forwards; }
+
+    @keyframes feedback-popup-anim {
+        0% { transform: translate(-50%, 80px) scale(0.7); opacity: 0; } 
+        15% { transform: translate(-50%, 0) scale(0.9); opacity: 1; } 
+        85% { transform: translate(-50%, 0) scale(0.9); opacity: 1; }
+        100% { transform: translate(-50%, 80px) scale(0.7); opacity: 0; }
+    }
+    .animate-feedback-popup { animation: feedback-popup-anim 3s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards; }
+    
+    @keyframes surprise-visual-anim { 
+        0% { opacity: 0; transform: scale(0.2) rotate(-30deg); } 
+        30% { opacity: 1; transform: scale(1.1) rotate(15deg); }
+        60% { opacity: 0.8; transform: scale(0.9) rotate(-10deg); }
+        80% { opacity: 1; transform: scale(1.0) rotate(5deg); }
+        100% { opacity: 0; transform: scale(1.3) rotate(20deg); }
+    }
+    .animate-surprise-visual { animation: surprise-visual-anim 0.9s ease-out forwards; }
+
+    .surprise-bg-flash {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(255, 105, 180, 0.5); 
+        z-index: 200;
+        animation: surprise-bg-opacity-anim 0.9s ease-out forwards;
+    }
+    @keyframes surprise-bg-opacity-anim {
+        0% { opacity: 0; }
+        20% { opacity: 0.5; }
+        80% { opacity: 0.5; }
+        100% { opacity: 0; }
+    }
+
+    @keyframes heartbeat-pulse-anim {
+      0%, 100% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.15); opacity: 1; }
+    }
+    .animate-heartbeat-pulse {
+      animation: heartbeat-pulse-anim 1.2s infinite ease-in-out;
+    }
+
+    @keyframes couple-power-glow-anim {
+      0%, 100% { filter: drop-shadow(0 0 5px #ff80ab) drop-shadow(0 0 10px #ff80ab); }
+      50% { filter: drop-shadow(0 0 10px #ff007f) drop-shadow(0 0 20px #ff007f); }
+    }
+    .animate-couple-power {
+      animation: couple-power-glow-anim 1s infinite alternate;
+    }
+
+    @keyframes follow-heart-clue-fade {
+      0% { opacity: 0.8; transform: scale(0.7); filter: drop-shadow(0 0 6px #ff80ab) drop-shadow(0 0 12px #ff80ab); }
+      100% { opacity: 0; transform: scale(0.3); filter: drop-shadow(0 0 2px #ff80ab); }
+    }
+    .animate-follow-heart-clue {
+      animation: follow-heart-clue-fade 3s ease-out forwards; 
+    }
+
+    @keyframes last-stand-flash-anim {
+      0% { background-color: rgba(255, 224, 130, 0); } 
+      25% { background-color: rgba(255, 224, 130, 0.7); }
+      75% { background-color: rgba(255, 224, 130, 0.6); }
+      100% { background-color: rgba(255, 224, 130, 0); }
+    }
+    .last-stand-flash-effect {
+      position: fixed;
+      inset: 0;
+      z-index: 300; 
+      pointer-events: none;
+      animation: last-stand-flash-anim var(--last-stand-duration, 1.5s) ease-out forwards;
+    }
+
+    @keyframes sparkle-fade-anim {
+      0% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(0.3); }
+    }
+    .animate-sparkle-fade {
+      animation: sparkle-fade-anim var(--sparkle-lifespan, 0.7s) ease-out forwards;
+    }
+
+    @keyframes giftbox-open-anim {
+      0%, 100% { transform: rotate(0deg) scale(1); }
+      25% { transform: rotate(-5deg) scale(1.05); }
+      50% { transform: rotate(5deg) scale(1.05); }
+      75% { transform: rotate(-2deg) scale(1.02); }
+    }
+    .animate-giftbox-open {
+      animation: giftbox-open-anim 0.5s ease-in-out;
+    }
+
+    @keyframes screen-fade-in-anim {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .screen-fade-in {
+      animation: screen-fade-in-anim 0.5s ease-out forwards;
+    }
+
+    @keyframes soothe-impact-anim {
+      0% { transform: scale(0.5); opacity: 1; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+    .animate-soothe-impact {
+      animation: soothe-impact-anim var(--soothe-animation-duration, 0.5s) ease-out forwards;
+    }
+
+    @keyframes confetti-fall-anim {
+      0% {
+        transform: translateY(0px) rotate(var(--initial-rotation, 0deg));
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(0px) rotate(calc(var(--initial-rotation, 0deg) + var(--rotation-amount, 180deg)));
+        opacity: 0;
+      }
+    }
+    .animate-confetti-fall {
+        position: absolute; 
+        animation: confetti-fall-anim var(--confetti-lifespan, 1.2s) linear forwards;
+    }
+
+    @keyframes heart-lost-pulse-anim { 
+      0% { transform: scale(1); filter: brightness(100%); }
+      30% { transform: scale(1.4) rotate(-5deg); filter: brightness(160%) drop-shadow(0 0 6px #ff4d4d); color: #ff4d4d; }
+      60% { transform: scale(0.8) rotate(5deg); filter: brightness(70%); }
+      100% { transform: scale(1) rotate(0deg); filter: brightness(100%); }
+    }
+    .animate-heart-lost {
+      animation: heart-lost-pulse-anim 0.6s ease-in-out forwards;
+    }
+
+    @keyframes damage-flash-keyframes {
+      0% { opacity: 0; background-color: rgba(255, 0, 0, 0); }
+      25% { opacity: 0.3; background-color: rgba(255, 0, 0, 0.3); }
+      50% { opacity: 0.3; background-color: rgba(255, 0, 0, 0.3); }
+      100% { opacity: 0; background-color: rgba(255, 0, 0, 0); }
+    }
+    .damage-flash-effect-screen {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 90; /* Below modals, above maze */
+      pointer-events: none;
+      animation: damage-flash-keyframes 0.3s ease-out forwards;
+    }
+
+    @keyframes jump-scare-anim {
+      0% { transform: scale(1) rotate(0deg); filter: brightness(100%) contrast(100%); }
+      10% { transform: scale(1.8) rotate(-8deg) skewX(-10deg); filter: brightness(150%) contrast(120%) drop-shadow(0 0 10px #FF0000); }
+      20% { transform: scale(1.5) rotate(8deg) skewX(10deg); filter: brightness(80%) contrast(150%); }
+      30% { transform: scale(2.0) rotate(-5deg) skewX(-5deg); filter: brightness(180%) contrast(130%) drop-shadow(0 0 15px #FFFFFF); }
+      40% { transform: scale(1.7) rotate(5deg) skewX(5deg); filter: brightness(100%) contrast(100%); }
+      60% { transform: scale(2.2) rotate(0deg); filter: brightness(200%) contrast(160%) drop-shadow(0 0 20px #FF0000); }
+      100% { transform: scale(1) rotate(0deg); filter: brightness(100%) contrast(100%); }
+    }
+    .animate-jump-scare {
+      animation: jump-scare-anim var(--jump-scare-duration, 0.7s) cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+      transform-origin: center;
+      z-index: 10; 
+    }
+
+    /* Reality Glitch Animations */
+    @keyframes reality-glitch-main-anim {
+      0% { opacity: 0; filter: invert(0%) hue-rotate(0deg) saturate(100%); }
+      10% { opacity: 1; filter: invert(100%) hue-rotate(180deg) saturate(200%); }
+      90% { opacity: 1; filter: invert(100%) hue-rotate(180deg) saturate(200%); }
+      100% { opacity: 0; filter: invert(0%) hue-rotate(0deg) saturate(100%); }
+    }
+    @keyframes reality-glitch-static-pattern-anim {
+      0%, 100% { opacity: 0; }
+      5% { opacity: 0.6; background-position: 0 0; }
+      10% { opacity: 0.4; background-position: 50% 50%; }
+      15% { opacity: 0.7; background-position: 100% 0; }
+      20% { opacity: 0.3; background-position: 0 100%; }
+      /* Repeat similar quick changes for the duration */
+      80% { opacity: 0.5; background-position: 25% 75%; }
+      95% { opacity: 0.6; background-position: 75% 25%; }
+    }
+    @keyframes reality-glitch-shape-flash-anim {
+      0% { transform: scale(0) rotate(0deg); opacity: 0; border-color: red; }
+      5% { transform: scale(3) rotate(45deg); opacity: 0.8; border-color: white; }
+      10% { transform: scale(0.5) rotate(-45deg); opacity: 0.5; border-color: red; }
+      15% { transform: scale(4) rotate(90deg); opacity: 0.9; border-color: black; }
+      /* Continue very rapid, jarring changes */
+      85% { transform: scale(2) rotate(-180deg); opacity: 0.7; border-color: red; }
+      95% { transform: scale(5) rotate(180deg); opacity: 1; border-color: white; }
+      100% { transform: scale(0) rotate(0deg); opacity: 0; border-color: red; }
+    }
+
+    .reality-glitch-effect-container {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 500; /* Very high to overlay everything */
+      pointer-events: none;
+      overflow: hidden;
+      background-color: transparent; /* Main anim handles bg/filter changes */
+      animation: reality-glitch-main-anim var(--reality-glitch-total-duration, 0.35s) linear forwards;
+    }
+    .reality-glitch-effect-container::before { /* Static/Noise Overlay */
+      content: "";
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background-image: repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 4px),
+                        repeating-linear-gradient(90deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 4px);
+      background-size: 100px 100px; /* Adjust size of static pattern */
+      animation: reality-glitch-static-pattern-anim var(--reality-glitch-total-duration, 0.35s) linear forwards;
+      opacity: 0;
+    }
+    .reality-glitch-effect-container::after { /* Central Shape Flash */
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 10vw; /* Start small */
+      height: 10vw;
+      border: 5px solid red; /* Initial border */
+      box-shadow: 0 0 20px 10px red;
+      transform-origin: center center;
+      mix-blend-mode: difference; /* For unsettling visual effect */
+      animation: reality-glitch-shape-flash-anim var(--reality-glitch-total-duration, 0.35s) cubic-bezier(0.1, 0.7, 1.0, 0.1) forwards; /* Aggressive easing */
+      opacity: 0;
+    }
+
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.6.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

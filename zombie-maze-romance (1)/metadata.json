@@ -1,0 +1,6 @@
+
+{
+  "name": "Zombie Maze Romance",
+  "description": "A top-down 2D maze game where the player navigates levels, answers relationship-themed questions from chests to get power-ups, and avoids zombies. Created as a romantic gesture.",
+  "requestFramePermissions": []
+}
