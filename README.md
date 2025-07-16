@@ -2,7 +2,7 @@
 # 💖 RomanticMazeGame 💖
 
 <p align="center">
-   <img width="1384" height="1170" alt="Screenshot 2025-07-16 at 15 06 21" src="https://github.com/user-attachments/assets/cfd15882-7270-4d79-b239-1693efceb2c9" />
+   <img width="900" height="750" alt="Screenshot 2025-07-16 at 15 06 21" src="https://github.com/user-attachments/assets/cfd15882-7270-4d79-b239-1693efceb2c9" />
 </p>
 
 ## ✨ Introduction
